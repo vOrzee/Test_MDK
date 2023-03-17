@@ -8,6 +8,8 @@ import com.example.test.QuestionsData.jsonString
 import com.google.gson.Gson
 import java.io.File
 import java.net.URI
+import java.util.Calendar
+import java.util.Date
 import java.util.Random
 import kotlin.random.nextInt
 
@@ -84,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         return if(answer==questions[index].Right) 1 else -1
     }
     fun nextQuestion() {
-        index = kotlin.random.Random.nextInt(0, questions.lastIndex)
+        index = ((kotlin.random.Random.nextInt(0, questions.lastIndex).toLong()*Calendar.getInstance().timeInMillis)%questions.lastIndex).toInt()
         question.text = questions[index].Question
         answer1.text = questions[index].Answer1
         answer2.text = questions[index].Answer2
